@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "icon": "❄️",
+    "title": "Keep Pets Warm",
+    "text": "Make sure your pets have cozy blankets and sweaters to protect them from the cold during winter."
+  },
+  {
+    "id": 2,
+    "icon": "🧴",
+    "title": "Moisturize Their Paws",
+    "text": "Use pet-safe balm to keep your pet’s paws soft and prevent cracking caused by dry winter air."
+  },
+  {
+    "id": 3,
+    "icon": "🍲",
+    "title": "Serve Warm Meals",
+    "text": "Provide slightly warm food and water to help maintain your pet’s body temperature in chilly weather."
+  }
+]
