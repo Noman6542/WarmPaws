@@ -10,9 +10,6 @@ const HomeLayout = () => {
   return (
     <div className='max-w-[1600px] mx-auto bg-[#f9fafb]'> 
       <Navbar></Navbar>
-      <Services></Services>
-      <WinterCare></WinterCare>
-      <ExpertVets></ExpertVets>
       <Outlet></Outlet>
       <Footer></Footer>
     </div>

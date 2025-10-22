@@ -1,8 +1,16 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
-import Header from "../Pages/Header";
-
+import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
 const Navbar = () => {
+  const { user, logout } = use(AuthContext);
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        toast.success("You logout successfully");
+      })
+      .catch((error) => toast.error(error.message));
+  };
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm px-4 lg:px-8">
@@ -31,13 +39,30 @@ const Navbar = () => {
               <NavLink className="hover:underline hover:text-[#4338ca]" to="/">
                 Home
               </NavLink>
-              <NavLink className="hover:underline hover:text-[#4338ca]" to="/">
+              <NavLink
+                className="hover:underline hover:text-[#4338ca]"
+                to="/ServicesDetails"
+              >
                 Services
               </NavLink>
-              <Link className="btn btn-primary hover:bg-transparent hover:font-semibold hover:text-black">
-                Login
-              </Link>
-              <Link className="btn btn-outline btn-primary">Register</Link>
+              <div>
+                {user ? (
+                  <button
+                    onClick={handleLogout}
+                    to="/register"
+                    className="btn btn-outline btn-primary"
+                  >
+                    Log-Out
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="btn btn-primary hover:bg-transparent hover:font-semibold hover:text-black"
+                  >
+                    Login
+                  </Link>
+                )}
+              </div>
             </ul>
           </div>
 
@@ -57,26 +82,35 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end lg:flex items-center gap-4 hidden md:block">
-          <NavLink
-            className="hover:underline  hover:text-[#4338ca]"
-            to="/"
-          >
+          <NavLink className="hover:underline  hover:text-[#4338ca]" to="/">
             Home
           </NavLink>
           <NavLink
             className="hover:underline hover:text-[#4338ca]"
-            to="/"
+            to="/ServicesDetails"
           >
             Services
           </NavLink>
-          <Link className="btn btn-primary hover:bg-transparent hover:font-semibold hover:text-black">
-            Login
-          </Link>
-          <Link className="btn btn-outline btn-primary">Register</Link>
+          <div>
+            {user ? (
+              <button
+                onClick={handleLogout}
+                to="/register"
+                className="btn btn-outline btn-primary"
+              >
+                Log-Out
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="btn btn-primary hover:bg-transparent hover:font-semibold hover:text-black"
+              >
+                Login
+              </Link>
+            )}
+          </div>
         </div>
       </div>
-
-      <Header></Header>
     </div>
   );
 };

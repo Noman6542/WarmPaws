@@ -1,21 +1,45 @@
-import { StrictMode } from "react";
+import { Component, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import HomeLayout from "./Layout/HomeLayout.jsx";
-
+import Home from "./Pages/Home.jsx";
+import ServicesDetails from "./Pages/ServicesDetails.jsx";
+import Login from "./Pages/Login.jsx";
+import Register from "./Pages/Register.jsx";
+import AuthProvider from "./Provider/AuthProvider.jsx";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: HomeLayout,
     children: [
-     
+      {
+        index: true,
+        path: "/",
+        Component: Home,
+      },
+      {
+        path: "/ServicesDetails",
+        Component: ServicesDetails,
+      },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
     ],
   },
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+       <ToastContainer />
+    </AuthProvider>
   </StrictMode>
 );
