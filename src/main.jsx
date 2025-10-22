@@ -9,6 +9,9 @@ import Login from "./Pages/Login.jsx";
 import Register from "./Pages/Register.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
 import { ToastContainer } from "react-toastify";
+import Profile from "./Pages/Profile.jsx";
+import ViewDetails from "./Pages/ViewDetails.jsx";
+import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,19 @@ const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+      {
+        path: "/profile",
+        Component: Profile,
+      },
+      {
+        path: "/view-details/:id",
+        element: (
+          <PrivateRoute>
+            <ViewDetails></ViewDetails>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/services.json"),
+      },
     ],
   },
 ]);
@@ -39,7 +55,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
       <RouterProvider router={router} />
-       <ToastContainer />
+      <ToastContainer />
     </AuthProvider>
   </StrictMode>
 );

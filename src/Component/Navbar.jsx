@@ -45,6 +45,12 @@ const Navbar = () => {
               >
                 Services
               </NavLink>
+              <NavLink
+                className="hover:underline hover:text-[#4338ca]"
+                to="/ServicesDetails"
+              >
+                My Profile
+              </NavLink>
               <div>
                 {user ? (
                   <button
@@ -90,6 +96,12 @@ const Navbar = () => {
             to="/ServicesDetails"
           >
             Services
+          </NavLink>
+          <NavLink
+            className="hover:underline hover:text-[#4338ca]"
+            to="/profile"
+          >
+            My Profile
           </NavLink>
           <div>
             {user ? (

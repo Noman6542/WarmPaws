@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FcRating } from "react-icons/fc";
+import { Link } from "react-router";
 import { toast } from "react-toastify";
 
 const Services = () => {
@@ -43,7 +44,7 @@ const Services = () => {
             </div>
             <p className="text-gray  font-semibold mt-2">${pet.price}</p>
             
-            <button className="btn btn-primary mt-3 hover:bg-transparent hover:font-semibold hover:text-black">View Details</button>
+            <Link to={`/view-details/${pet.serviceId}`}  className="btn btn-primary mt-3 hover:bg-transparent hover:font-semibold hover:text-black">View Details</Link>
           </div>
         ))}
       </div>
