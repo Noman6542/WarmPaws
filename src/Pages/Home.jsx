@@ -6,6 +6,7 @@ import ExpertVets from './ExpertVets';
 import { ClimbingBoxLoader } from 'react-spinners';
 import ExtraSection from './ExtraSection';
 
+
 const Home = () => {
   const [loading, setLoading] = useState(true);
    useEffect(() => {
@@ -23,7 +24,7 @@ const Home = () => {
     <div>
       <Header></Header>
       <Services></Services>
-      <WinterCare></WinterCare>
+      <WinterCare ></WinterCare>
       <ExpertVets></ExpertVets>
       <ExtraSection></ExtraSection>
     </div>

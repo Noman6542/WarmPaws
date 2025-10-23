@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { FcRating } from "react-icons/fc";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 const Services = () => {
   const [pets, setPets] = useState([]);
-  console.log(pets);
-
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch("/services.json")
       .then((res) => res.json())
@@ -20,33 +24,58 @@ const Services = () => {
         setLoading(false);
       });
   }, []);
+
   if (loading) {
     return <p className="text-center mt-10">Loading...</p>;
   }
+
   return (
-    <div className="text-center text-5xl ">
-      <h1 className="font-bold">Popular Winter Care Services</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-        {pets.map((pet) => (
-          <div
-            key={pet.serviceId}
-            className="border p-4 mt-10 rounded-lg shadow hover:shadow-lg transition"
-          >
-            <img
-              src={pet.image}
-              alt={pet.serviceName}
-              className="w-full h-48 object-cover rounded-md mb-4"
-            />
-            <h2 className="text-xl font-bold">{pet.serviceName}</h2>
-            <div className="flex justify-between items-center mt-3">
-              <p className="text-gray text-[18px]">{pet.category}</p>
-            <p className="text-yellow text-[18px] flex justify-around items-center gap-2"><FcRating/> {pet.rating} </p>
-            </div>
-            <p className="text-gray  font-semibold mt-2">${pet.price}</p>
-            
-            <Link to={`/view-details/${pet.serviceId}`}  className="btn btn-primary mt-3 hover:bg-transparent hover:font-semibold hover:text-black">View Details</Link>
-          </div>
-        ))}
+    <div className="text-center text-4xl font-bold mt-10">
+      <h1>Popular Winter Care Services</h1>
+      <div className="mt-10 px-6">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 2500 }}
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {pets.map((pet) => (
+            <SwiperSlide key={pet.serviceId}>
+              <div className="border p-4 my-7 rounded-lg shadow hover:shadow-lg transition bg-white">
+                <img
+                  src={pet.image}
+                  alt={pet.serviceName}
+                  className="w-full h-56 object-cover rounded-md mb-4"
+                />
+                <h2 className="text-xl font-bold">{pet.serviceName}</h2>
+
+                <div className="flex justify-between items-center mt-3 text-[18px]">
+                  <p className="text-gray-600">{pet.category}</p>
+                  <p className="flex items-center gap-2 text-yellow-600">
+                    <FcRating /> {pet.rating}
+                  </p>
+                </div>
+
+                <p className="text-gray-800 font-semibold mt-2">${pet.price}</p>
+
+                <Link
+                  to={`/view-details/${pet.serviceId}`}
+                  className="btn btn-primary mt-3 hover:bg-transparent hover:font-semibold hover:text-black"
+                >
+                  View Details
+                </Link>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

@@ -89,22 +89,25 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <div className="navbar-end lg:flex items-center gap-4 hidden md:block">
-          <NavLink className="hover:underline  hover:text-[#4338ca]" to="/">
-            Home
-          </NavLink>
-          <NavLink
-            className="hover:underline hover:text-[#4338ca]"
-            to="/ServicesDetails"
-          >
-            Services
-          </NavLink>
-          <NavLink
-            className="hover:underline hover:text-[#4338ca]"
-            to="/profile"
-          >
-            My Profile
-          </NavLink>
+        <div className="navbar-end lg:flex items-center gap-4 md:block">
+          <div className="navbar-end lg:flex items-center gap-4 hidden md:block">
+            <NavLink className="hover:underline  hover:text-[#4338ca]" to="/">
+              Home
+            </NavLink>
+            <NavLink
+              className="hover:underline hover:text-[#4338ca]"
+              to="/ServicesDetails"
+            >
+              Services
+            </NavLink>
+            <NavLink
+              className="hover:underline hover:text-[#4338ca]"
+              to="/profile"
+            >
+              My Profile
+            </NavLink>
+          </div>
+
           <div className="flex gap-3">
             {user && user.photoURL ? (
               <img
@@ -115,19 +118,19 @@ const Navbar = () => {
             ) : (
               <FaUserAlt className="w-10 h-10 text-gray-500" />
             )}
-            
+
             {user ? (
               <button
                 onClick={handleLogout}
                 to="/register"
-                className="btn btn-outline btn-primary"
+                className="btn btn-outline btn-primary hidden md:flex items-center justify-center"
               >
                 Log-Out
               </button>
             ) : (
               <Link
                 to="/login"
-                className="btn btn-primary hover:bg-transparent hover:font-semibold hover:text-black"
+                className="btn btn-primary hidden md:flex items-center justify-center hover:bg-transparent hover:font-semibold hover:text-black "
               >
                 Login
               </Link>

@@ -3,10 +3,13 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import { FaEye } from "react-icons/fa6";
+import { IoEyeOff } from "react-icons/io5";
 
 const Login = () => {
   const [error, setError] = useState("");
-  
+  const [show, setShow] = useState(false);
+
   const { login, googleWithSignin } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,8 +18,6 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-
-    
 
     login(email, password)
       .then((result) => {
@@ -27,15 +28,13 @@ const Login = () => {
       .catch((error) => setError(error.message));
   };
 
-   
-
   const handleWithGoogle = () => {
     googleWithSignin()
       .then((result) => {
         const user = result.user;
         toast.success(`Login Successfully, ${user.displayName}`);
         console.log(user);
-        
+
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => setError(error.message));
@@ -56,13 +55,20 @@ const Login = () => {
             />
 
             <label className="label">Password</label>
-            <input
-              name="password"
-              type="password"
-              
-              className="input"
-              placeholder="Password"
-            />
+            <div className="relative">
+              <input
+                name="password"
+                type={show ? "text" : "password"}
+                className="input"
+                placeholder="Password"
+              />
+              <span
+                onClick={() => setShow(!show)}
+                className=" absolute right-5 top-1/3 cursor-pointer z-50"
+              >
+                {show ? <FaEye></FaEye> : <IoEyeOff></IoEyeOff>}
+              </span>
+            </div>
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
@@ -84,9 +90,12 @@ const Login = () => {
             <p className="font-bold text-2xl">or</p>
           </div>
         </form>
-          
+
         <div className="px-10 pb-5 mx-auto">
-          <button onClick={handleWithGoogle} className="btn btn-soft btn-primary flex justify-center items-center gap-2">
+          <button
+            onClick={handleWithGoogle}
+            className="btn btn-soft btn-primary flex justify-center items-center gap-2"
+          >
             <FcGoogle></FcGoogle> Login with Google{" "}
           </button>
         </div>
