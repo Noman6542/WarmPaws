@@ -1,10 +1,11 @@
-import React, { use, useState } from "react";
+import React, { use, useRef, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { FaEye } from "react-icons/fa6";
 import { IoEyeOff } from "react-icons/io5";
+
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -40,6 +41,7 @@ const Login = () => {
       .catch((error) => setError(error.message));
   };
 
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl text-center">
@@ -52,6 +54,7 @@ const Login = () => {
               type="email"
               className="input"
               placeholder="Email"
+              
             />
 
             <label className="label">Password</label>
@@ -70,7 +73,7 @@ const Login = () => {
               </span>
             </div>
             <div>
-              <a className="link link-hover">Forgot password?</a>
+              <Link to='/forgot-password' className="link link-hover">Forgot password?</Link>
             </div>
             <p>
               Don't have an account?

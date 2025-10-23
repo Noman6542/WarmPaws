@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import Profile from "./Pages/Profile.jsx";
 import ViewDetails from "./Pages/ViewDetails.jsx";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
+import ForgotPassword from "./Pages/ForgotPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         ),
         loader: () => fetch("/services.json"),
       },
+      {
+        path:'/forgot-password',
+        Component:ForgotPassword,
+      }
     ],
   },
 ]);
