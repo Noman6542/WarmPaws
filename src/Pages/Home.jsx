@@ -23,7 +23,6 @@ const Home = () => {
   return (
     <div>
       <Header></Header>
-      <Services></Services>
       <WinterCare ></WinterCare>
       <ExpertVets></ExpertVets>
       <ExtraSection></ExtraSection>
