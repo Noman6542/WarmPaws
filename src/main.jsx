@@ -4,7 +4,6 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import HomeLayout from "./Layout/HomeLayout.jsx";
 import Home from "./Pages/Home.jsx";
-import ServicesDetails from "./Pages/ServicesDetails.jsx";
 import Login from "./Pages/Login.jsx";
 import Register from "./Pages/Register.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
@@ -13,6 +12,7 @@ import Profile from "./Pages/Profile.jsx";
 import ViewDetails from "./Pages/ViewDetails.jsx";
 import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
+import Services from "./Pages/Services.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +24,6 @@ const router = createBrowserRouter([
         path: "/",
         Component: Home,
         loader:()=>fetch('/WinterCareTips.json'),
-      },
-      {
-        path: "/ServicesDetails",
-        Component: ServicesDetails,
       },
       {
         path: "/login",
@@ -53,6 +49,10 @@ const router = createBrowserRouter([
       {
         path:'/forgot-password',
         Component:ForgotPassword,
+      },
+      {
+        path:'/services',
+        Component:Services,
       }
     ],
   },

@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { FaUserAlt } from "react-icons/fa";
 const Navbar = () => {
   const { user, logout } = use(AuthContext);
-  // console.log(user.photoURL);
   const handleLogout = () => {
     logout()
       .then(() => {
@@ -43,7 +42,7 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 className="hover:underline hover:text-[#4338ca]"
-                to="/ServicesDetails"
+                to="/services"
               >
                 Services
               </NavLink>
@@ -96,7 +95,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               className="hover:underline hover:text-[#4338ca]"
-              to="/ServicesDetails"
+              to="/services"
             >
               Services
             </NavLink>

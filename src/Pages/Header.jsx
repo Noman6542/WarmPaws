@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Header = () => {
   return (
@@ -11,9 +12,9 @@ const Header = () => {
       <p className="text-sm sm:text-base md:text-lg py-4">
         Ensure your furry friend stays warm, safe, and happy during the cold season with our specialized services.
       </p>
-      <button className="btn btn-primary rounded-full px-6 py-3 text-sm sm:text-base md:text-lg hover:bg-white hover:text-[#5e5feb] transition duration-300">
+      <Link to='/services' className="btn btn-primary rounded-full px-6 py-3 text-sm sm:text-base md:text-lg hover:bg-white hover:text-[#5e5feb] transition duration-300">
         Explore Service
-      </button>
+      </Link>
     </div>
   </div>
 </div>
