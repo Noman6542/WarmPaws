@@ -2,8 +2,10 @@ import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import { FaUserAlt } from "react-icons/fa";
 const Navbar = () => {
   const { user, logout } = use(AuthContext);
+  // console.log(user.photoURL);
   const handleLogout = () => {
     logout()
       .then(() => {
@@ -103,7 +105,8 @@ const Navbar = () => {
           >
             My Profile
           </NavLink>
-          <div>
+          <div className="flex gap-3">
+            <img className="w-12 rounded-full" src={`${user? user.photoURL:<FaUserAlt />}`} alt="" srcset="" />
             {user ? (
               <button
                 onClick={handleLogout}
@@ -112,6 +115,7 @@ const Navbar = () => {
               >
                 Log-Out
               </button>
+              
             ) : (
               <Link
                 to="/login"

@@ -4,6 +4,7 @@ import Services from './Services';
 import WinterCare from './winterCare';
 import ExpertVets from './ExpertVets';
 import { ClimbingBoxLoader } from 'react-spinners';
+import ExtraSection from './ExtraSection';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -24,6 +25,7 @@ const Home = () => {
       <Services></Services>
       <WinterCare></WinterCare>
       <ExpertVets></ExpertVets>
+      <ExtraSection></ExtraSection>
     </div>
   );
 };

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Keep Them Warm Indoors",
+    "text": "Make sure your pets have a cozy bed and blanket to stay warm during cold nights.",
+    "icon": "Snowflake"
+  },
+  {
+    "id": 2,
+    "title": "Avoid Frequent Baths",
+    "text": "Frequent baths can remove natural oils from your pet’s skin, making it dry and flaky.",
+    "icon": "Bath"
+  },
+  {
+    "id": 3,
+    "title": "Feed Nutritious Food",
+    "text": "Give your pets extra nutrition during winter to help maintain their energy levels.",
+    "icon": "Utensils"
+  },
+  {
+    "id": 4,
+    "title": "Show Extra Love & Care",
+    "text": "Pets can get lazy during winter — spend more time playing with them to keep them active.",
+    "icon": "Heart"
+  }
+]

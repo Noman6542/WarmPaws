@@ -22,6 +22,7 @@ const router = createBrowserRouter([
         index: true,
         path: "/",
         Component: Home,
+        loader:()=>fetch('/WinterCareTips.json'),
       },
       {
         path: "/ServicesDetails",
