@@ -1,18 +1,26 @@
 
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
-import { use } from "react";
+import { use, useState } from "react";
 import { toast } from "react-toastify";
 
 const Register = () => {
   const{createUser,setUser} =use(AuthContext);
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+ 
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value.trim();
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
+     const validatePassword =  /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if(!validatePassword.test(password)){
+      setError("Password must have 1 uppercase, 1 lowercase & 6+ chars");
+      return;
+    };
     console.log(name, email, photo, password);
      createUser(email, password)
       .then(result => {
@@ -24,6 +32,7 @@ const Register = () => {
         toast.error("Firebase Error:", error.message);
       });
   };
+  
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl text-center">
@@ -68,6 +77,8 @@ const Register = () => {
             <input
               name="password"
               type="password"
+              value={password}
+               onChange={(e) => setPassword(e.target.value)}
               className="input"
               placeholder="Password"
               required
@@ -84,7 +95,7 @@ const Register = () => {
                 </Link>
               </p>
             </div>
-
+            {error && <p className="text-red-400">{error}</p>}
             <button type="submit" className="btn btn-neutral mt-4">
               Register
             </button>

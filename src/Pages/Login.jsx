@@ -2,10 +2,12 @@ import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { login } = use(AuthContext);
+  
+  const { login, googleWithSignin } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,9 +16,26 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+    
+
     login(email, password)
       .then((result) => {
         const user = result.user;
+        toast.success(`Login Successfully, ${user.displayName}`);
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => setError(error.message));
+  };
+
+   
+
+  const handleWithGoogle = () => {
+    googleWithSignin()
+      .then((result) => {
+        const user = result.user;
+        toast.success(`Login Successfully, ${user.displayName}`);
+        console.log(user);
+        
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => setError(error.message));
@@ -28,12 +47,22 @@ const Login = () => {
         <h2 className="font-semibold text-3xl p-4">Login your account</h2>
         <form onSubmit={handleLogin} className="card-body">
           <fieldset className="fieldset">
-
             <label className="label">Email</label>
-            <input name="email" type="email" className="input" placeholder="Email" />
+            <input
+              name="email"
+              type="email"
+              className="input"
+              placeholder="Email"
+            />
 
             <label className="label">Password</label>
-            <input name="password" type="password" className="input" placeholder="Password" />
+            <input
+              name="password"
+              type="password"
+              
+              className="input"
+              placeholder="Password"
+            />
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
@@ -51,9 +80,13 @@ const Login = () => {
               Login
             </button>
           </fieldset>
+          <div className="flex justify-center items-center">
+            <p className="font-bold text-2xl">or</p>
+          </div>
         </form>
+          
         <div className="px-10 pb-5 mx-auto">
-          <button className="btn btn-soft btn-primary flex justify-center items-center gap-2">
+          <button onClick={handleWithGoogle} className="btn btn-soft btn-primary flex justify-center items-center gap-2">
             <FcGoogle></FcGoogle> Login with Google{" "}
           </button>
         </div>
