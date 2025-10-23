@@ -1,14 +1,16 @@
 
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { use, useState } from "react";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
-  const{createUser,setUser} =use(AuthContext);
+  const{createUser,setUser,googleWithSignin} =use(AuthContext);
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const location = useLocation();
  
   const handleRegister = (e) => {
     e.preventDefault();
@@ -32,9 +34,20 @@ const Register = () => {
         toast.error("Firebase Error:", error.message);
       });
   };
+  const handleWithGoogle = () => {
+      googleWithSignin()
+        .then((result) => {
+          const user = result.user;
+          toast.success(`Login Successfully, ${user.displayName}`);
+          console.log(user);
+          
+          navigate(`${location.state ? location.state : "/"}`);
+        })
+        .catch((error) => setError(error.message));
+    };
   
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-base-200 min-h-screen my-10">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl text-center">
         <h2 className="font-semibold text-3xl p-4">Register your account</h2>
         <form onSubmit={handleRegister} className="card-body">
@@ -100,7 +113,13 @@ const Register = () => {
               Register
             </button>
           </fieldset>
+          <div className="flex justify-center items-center">
+            <p className="font-bold text-2xl">or</p>
+          </div>
         </form>
+          <button onClick={handleWithGoogle} className="btn btn-soft btn-primary flex justify-center items-center mb-5 gap-2">
+                      <FcGoogle></FcGoogle> Login with Google{" "}
+                    </button>
       </div>
     </div>
   );

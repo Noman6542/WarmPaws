@@ -106,7 +106,16 @@ const Navbar = () => {
             My Profile
           </NavLink>
           <div className="flex gap-3">
-            <img className="w-12 rounded-full" src={`${user? user.photoURL:<FaUserAlt />}`} alt="" srcset="" />
+            {user && user.photoURL ? (
+              <img
+                className="w-12 h-12 rounded-full border"
+                src={user.photoURL}
+                alt="User"
+              />
+            ) : (
+              <FaUserAlt className="w-10 h-10 text-gray-500" />
+            )}
+            
             {user ? (
               <button
                 onClick={handleLogout}
@@ -115,7 +124,6 @@ const Navbar = () => {
               >
                 Log-Out
               </button>
-              
             ) : (
               <Link
                 to="/login"
