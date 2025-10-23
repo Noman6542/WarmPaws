@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { ClimbingBoxLoader } from "react-spinners";
 
 const Services = () => {
   const [pets, setPets] = useState([]);
@@ -26,7 +27,11 @@ const Services = () => {
   }, []);
 
   if (loading) {
-    return <p className="text-center mt-10">Loading...</p>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ClimbingBoxLoader color="#5e5feb" size={20} />
+      </div>
+    );
   }
 
   return (

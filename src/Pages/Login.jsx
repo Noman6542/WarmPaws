@@ -34,7 +34,6 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         toast.success(`Login Successfully, ${user.displayName}`);
-        console.log(user);
 
         navigate(`${location.state ? location.state : "/"}`);
       })

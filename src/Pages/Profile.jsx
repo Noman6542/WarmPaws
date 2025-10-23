@@ -23,7 +23,6 @@ const Profile = () => {
         setEditing(false);
       })
       .catch((error) => {
-        console.error(error);
         toast.error(error.message);
       });
   };

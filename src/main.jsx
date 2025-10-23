@@ -24,6 +24,7 @@ const router = createBrowserRouter([
         path: "/",
         Component: Home,
         loader:()=>fetch('/WinterCareTips.json'),
+
       },
       {
         path: "/login",
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () => fetch("/services.json"),
+        
       },
       {
         path:'/forgot-password',

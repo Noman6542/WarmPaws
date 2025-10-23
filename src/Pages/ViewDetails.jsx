@@ -15,8 +15,7 @@ const ViewDetails = () => {
   } else { 
     setView({}); 
   }
-},[service, id])
-console.log("id:", id, "serviceId:", service.map(s => s.serviceId));
+},[service, id]);
 
 
   const handleChange = (e) => {

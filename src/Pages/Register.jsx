@@ -25,7 +25,7 @@ const Register = () => {
       setError("Password must have 1 uppercase, 1 lowercase & 6+ chars");
       return;
     }
-    console.log(name, email, photo, password);
+    // console.log(name, email, photo, password);
     createUser(email, password)
       .then((result) => {
         setUser(result.user);
@@ -41,7 +41,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         toast.success(`Login Successfully, ${user.displayName}`);
-        console.log(user);
+        // console.log(user);
 
         navigate(`${location.state ? location.state : "/"}`);
       })
