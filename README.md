@@ -20,4 +20,5 @@ This project is a responsive web application for providing pet care services. Us
 - `firebase` - Authentication and backend services
 - `tailwindcss` - Utility-first CSS framework
 - `daisyui` - TailwindCSS component library
+--------
 
