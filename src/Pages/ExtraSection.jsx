@@ -9,7 +9,7 @@ const ExtraSection = () => {
         ❄️ Winter Care Tips for Pets
       </h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 md:px-16">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {careData.map((tips) => (
           <div
             key={tips.id}

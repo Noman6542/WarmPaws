@@ -13,8 +13,8 @@ const Navbar = () => {
       .catch((error) => toast.error(error.message));
   };
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm px-4 lg:px-8">
+    <div className="sticky top-0 z-50">
+      <div className="navbar  bg-white shadow-sm border-b border-[#5e5feb] px-5 max-w-5xl mx-auto lg:px-8 rounded-3xl">
         <div className="navbar-start">
           <div className="dropdown lg:hidden">
             <label tabIndex={0} className="btn btn-ghost">
@@ -42,16 +42,30 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 className="hover:underline hover:text-[#4338ca]"
-                to="/services"
+                to="/all-items"
               >
-                Services
+                All-Items
               </NavLink>
               <NavLink
                 className="hover:underline hover:text-[#4338ca]"
-                to="/ServicesDetails"
+                to="/about-us"
               >
-                My Profile
+                About Us
               </NavLink>
+              <NavLink
+                className="hover:underline hover:text-[#4338ca]"
+                to="/contact-us"
+              >
+                Contact Us
+              </NavLink>
+              {user && (
+                <NavLink
+                  className="hover:underline hover:text-[#4338ca]"
+                  to="/ServicesDetails"
+                >
+                  My Profile
+                </NavLink>
+              )}
               <div>
                 {user ? (
                   <button
@@ -88,26 +102,73 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <div className="navbar-end lg:flex items-center gap-4 md:block">
-          <div className="navbar-end lg:flex items-center gap-4 hidden md:block">
-            <NavLink className="hover:underline  hover:text-[#4338ca]" to="/">
+        <div className="lg:flex items-center justify-between gap-6 md:block w-full ">
+          <div className=" lg:flex items-center gap-4 hidden md:block">
+            <NavLink
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md transition whitespace-nowrap ${
+                  isActive
+                    ? "bg-[#5e5feb] text-white"
+                    : "hover:bg-gray-100 hover:text-[#4338ca]"
+                }`
+              }
+              to="/"
+            >
               Home
             </NavLink>
             <NavLink
-              className="hover:underline hover:text-[#4338ca]"
-              to="/services"
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md transition whitespace-nowrap ${
+                  isActive
+                    ? "bg-[#5e5feb] text-white"
+                    : "hover:bg-gray-100 hover:text-[#4338ca]"
+                }`
+              }
+              to="/all-items"
             >
-              Services
+              All-Items
             </NavLink>
             <NavLink
-              className="hover:underline hover:text-[#4338ca]"
-              to="/profile"
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md transition whitespace-nowrap ${
+                  isActive
+                    ? "bg-[#5e5feb] text-white"
+                    : "hover:bg-gray-100 hover:text-[#4338ca]"
+                }`
+              }
+              to="/about-us"
             >
-              My Profile
+              About Us
             </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md transition whitespace-nowrap ${
+                  isActive
+                    ? "bg-[#5e5feb] text-white"
+                    : "hover:bg-gray-100 hover:text-[#4338ca]"
+                }`
+              }
+              to="/contact-us"
+            >
+              Contact Us
+            </NavLink>
+            {user && (
+              <NavLink
+                className={({ isActive }) =>
+                  `px-3 py-2 rounded-md transition whitespace-nowrap ${
+                    isActive
+                      ? "bg-[#5e5feb] text-white"
+                      : "hover:bg-gray-100 hover:text-[#4338ca]"
+                  }`
+                }
+                to="/profile"
+              >
+                My Profile
+              </NavLink>
+            )}
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
             {user && user.photoURL ? (
               <img
                 className="w-12 h-12 rounded-full border"

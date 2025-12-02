@@ -9,15 +9,20 @@ import Register from "./Pages/Register.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
 import { ToastContainer } from "react-toastify";
 import Profile from "./Pages/Profile.jsx";
-import ViewDetails from "./Pages/ViewDetails.jsx";
-import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
-import Services from "./Pages/Services.jsx";
+import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
+import ErrorPage from "./Pages/ErrorPage.jsx";
+import AboutUs from "./Pages/AboutUs.jsx";
+import ContactUs from "./Pages/ContactUs.jsx";
+import ViewDetails from "./Pages/ViewDetails.jsx";
+import Items from "./Pages/All-Items.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: HomeLayout,
+    errorElement: <ErrorPage />,
+    hydrateFallbackElement:<p>Loading.......</p>,
     children: [
       {
         index: true,
@@ -36,16 +41,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        Component: Profile,
+        element:<PrivateRoute>
+          <Profile></Profile>
+        </PrivateRoute>,
+        
       },
       {
         path: "/view-details/:id",
-        element: (
-          <PrivateRoute>
-            <ViewDetails></ViewDetails>
-          </PrivateRoute>
-        ),
-        loader: () => fetch("/services.json"),
+        Component:ViewDetails,
+        loader: () => fetch("/AllItems.json").limit(10),
         
       },
       {
@@ -53,8 +57,16 @@ const router = createBrowserRouter([
         Component:ForgotPassword,
       },
       {
-        path:'/services',
-        Component:Services,
+        path:'/all-items',
+        Component:Items ,
+      },
+      {
+        path:'/about-us',
+        Component:AboutUs
+      },
+      {
+        path:'/contact-us',
+        Component:ContactUs
       }
     ],
   },

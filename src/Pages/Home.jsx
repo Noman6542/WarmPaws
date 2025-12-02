@@ -5,6 +5,7 @@ import WinterCare from './winterCare';
 import ExpertVets from './ExpertVets';
 import { ClimbingBoxLoader } from 'react-spinners';
 import ExtraSection from './ExtraSection';
+import AppointmentSection from './AppointmentSection';
 
 
 const Home = () => {
@@ -25,7 +26,10 @@ const Home = () => {
       <Header></Header>
       <WinterCare ></WinterCare>
       <ExpertVets></ExpertVets>
+      <Services></Services>
       <ExtraSection></ExtraSection>
+      <AppointmentSection></AppointmentSection>
+      
     </div>
   );
 };

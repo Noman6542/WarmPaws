@@ -35,7 +35,8 @@ const Services = () => {
   }
 
   return (
-    <div className="text-center text-4xl font-bold mt-10">
+    <div className="text-center text-4xl font-bold">
+      <p className="text-[#fa6c41] my-4 font-semibold">Trending Products</p>
       <h1>Popular Winter Care Services</h1>
       <div className="mt-10 px-6">
         <Swiper
@@ -54,7 +55,7 @@ const Services = () => {
         >
           {pets.map((pet) => (
             <SwiperSlide key={pet.serviceId}>
-              <div className="border p-4 my-7 rounded-lg shadow hover:shadow-lg transition bg-white">
+              <div className=" p-4 my-7 rounded-lg shadow hover:shadow-lg transition bg-white">
                 <img
                   src={pet.image}
                   alt={pet.serviceName}

@@ -9,7 +9,7 @@ const WinterCare = () => {
       .then((data) => setCares(data));
   }, []);
   return (
-    <div className="text-center mt-10 px-5">
+    <div className="text-center mt-5 px-5">
       <h1 className="font-bold text-4xl">Winter Care Tips for Pets</h1>
 
       <div className="flex flex-col md:flex-row flex-wrap justify-center md:justify-around gap-6 mt-10">
