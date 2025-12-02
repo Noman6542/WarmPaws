@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/view-details/:id",
         Component:ViewDetails,
-        loader: () => fetch("/AllItems.json").limit(10),
+        loader: () => fetch("/AllItems.json"),
         
       },
       {
